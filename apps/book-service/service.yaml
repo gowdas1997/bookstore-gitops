@@ -2,6 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: book-service
+  annotations:
+    alb.ingress.kubernetes.io/healthcheck-path: /api/books/health
   namespace: bookstore
   labels:
     app: book-service
