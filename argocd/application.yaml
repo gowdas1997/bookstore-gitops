@@ -13,6 +13,9 @@ spec:
     server: https://kubernetes.default.svc
     namespace: bookstore
   syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
     syncOptions:
       - PrunePropagationPolicy=foreground
       - PruneLast=true
