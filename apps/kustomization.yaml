@@ -17,6 +17,6 @@ images:
   - name: 394070775944.dkr.ecr.ap-south-1.amazonaws.com/bookstore/user-service
     newTag: 9afc83c
   - name: 394070775944.dkr.ecr.ap-south-1.amazonaws.com/bookstore/book-service
-    newTag: dec6a00
+    newTag: 9afc83c
   - name: 394070775944.dkr.ecr.ap-south-1.amazonaws.com/bookstore/order-service
     newTag: 9afc83c
