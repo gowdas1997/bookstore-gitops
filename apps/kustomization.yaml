@@ -5,6 +5,7 @@ resources:
   - hpa.yaml
   - pdb.yaml
   - networkpolicy-ingress.yaml
+  - networkpolicy-egress.yaml
   - namespace.yaml
   - resourcequota.yaml
   - limitrange.yaml
