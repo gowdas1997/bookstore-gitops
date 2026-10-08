@@ -1,0 +1,54 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny-ingress
+  namespace: bookstore
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-alb-to-services
+  namespace: bookstore
+spec:
+  podSelector:
+    matchExpressions:
+      - key: app
+        operator: In
+        values: [user-service, book-service, order-service]
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - ipBlock:
+            cidr: 10.0.160.0/20
+        - ipBlock:
+            cidr: 10.0.176.0/20
+        - ipBlock:
+            cidr: 10.0.208.0/20
+      ports:
+        - protocol: TCP
+          port: 8000
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-order-to-book
+  namespace: bookstore
+spec:
+  podSelector:
+    matchLabels:
+      app: book-service
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: order-service
+      ports:
+        - protocol: TCP
+          port: 8000

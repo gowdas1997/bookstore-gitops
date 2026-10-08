@@ -4,6 +4,7 @@ resources:
   - ingress.yaml
   - hpa.yaml
   - pdb.yaml
+  - networkpolicy-ingress.yaml
   - namespace.yaml
   - resourcequota.yaml
   - limitrange.yaml
