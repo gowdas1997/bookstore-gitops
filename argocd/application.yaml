@@ -12,6 +12,11 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: bookstore
+  ignoreDifferences:
+    - group: apps
+      kind: Deployment
+      jsonPointers:
+        - /spec/replicas
   syncPolicy:
     automated:
       prune: true
@@ -19,3 +24,4 @@ spec:
     syncOptions:
       - PrunePropagationPolicy=foreground
       - PruneLast=true
+      - RespectIgnoreDifferences=true
