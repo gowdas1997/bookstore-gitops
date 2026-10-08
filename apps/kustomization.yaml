@@ -15,7 +15,7 @@ resources:
   - order-service/service.yaml
 images:
   - name: 394070775944.dkr.ecr.ap-south-1.amazonaws.com/bookstore/user-service
-    newTag: f65d8bf
+    newTag: 9afc83c
   - name: 394070775944.dkr.ecr.ap-south-1.amazonaws.com/bookstore/book-service
     newTag: dec6a00
   - name: 394070775944.dkr.ecr.ap-south-1.amazonaws.com/bookstore/order-service
