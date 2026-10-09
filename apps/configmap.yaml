@@ -6,3 +6,4 @@ metadata:
 data:
   DB_HOST: "bookstore-main.cpw0c4w628w0.ap-south-1.rds.amazonaws.com"
   BOOK_SERVICE_URL: "http://book-service:8000"
+  ADMIN_EMAILS: "admin@sudarshangowda.online"

@@ -66,6 +66,11 @@ spec:
                   key: JWT_SECRET
             - name: JWT_EXPIRE_MINUTES
               value: "60"
+            - name: ADMIN_EMAILS
+              valueFrom:
+                configMapKeyRef:
+                  name: bookstore-config
+                  key: ADMIN_EMAILS
           resources:
             requests:
               cpu: 100m
