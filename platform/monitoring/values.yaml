@@ -104,3 +104,37 @@ grafana:
       - grafana.sudarshangowda.online
     path: /
     pathType: Prefix
+
+additionalPrometheusRulesMap:
+  bookstore-rules:
+    groups:
+      - name: bookstore.rules
+        rules:
+          - alert: BookstorePodNotReady
+            expr: kube_pod_status_ready{namespace="bookstore",condition="true"} == 0
+            for: 5m
+            labels:
+              severity: warning
+            annotations:
+              summary: "A bookstore pod has not been Ready for 5 minutes"
+          - alert: BookstorePodCrashLooping
+            expr: increase(kube_pod_container_status_restarts_total{namespace="bookstore"}[15m]) > 3
+            for: 5m
+            labels:
+              severity: critical
+            annotations:
+              summary: "A bookstore container restarted more than 3 times in 15 minutes"
+          - alert: BookstoreContainerOOMKilled
+            expr: kube_pod_container_status_last_terminated_reason{namespace="bookstore",reason="OOMKilled"} == 1
+            for: 1m
+            labels:
+              severity: critical
+            annotations:
+              summary: "A bookstore container was OOMKilled - raise its memory limit"
+          - alert: BookstoreDeploymentReplicasMismatch
+            expr: kube_deployment_status_replicas_available{namespace="bookstore"} < kube_deployment_spec_replicas{namespace="bookstore"}
+            for: 5m
+            labels:
+              severity: warning
+            annotations:
+              summary: "A bookstore deployment has fewer available replicas than desired"
