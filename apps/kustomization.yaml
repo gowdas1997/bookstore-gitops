@@ -21,6 +21,6 @@ images:
   - name: 394070775944.dkr.ecr.ap-south-1.amazonaws.com/bookstore/user-service
     newTag: 6a3f1fd
   - name: 394070775944.dkr.ecr.ap-south-1.amazonaws.com/bookstore/book-service
-    newTag: 6a3f1fd
+    newTag: 1957436
   - name: 394070775944.dkr.ecr.ap-south-1.amazonaws.com/bookstore/order-service
     newTag: 9afc83c
