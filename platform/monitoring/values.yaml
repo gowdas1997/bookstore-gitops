@@ -14,6 +14,11 @@ kubeProxy:
   enabled: false
 
 prometheusOperator:
+  # Helm hook Jobs (kps-admission-create/patch) race with Argo CD, so run without admission webhooks
+  admissionWebhooks:
+    enabled: false
+  tls:
+    enabled: false
   resources:
     requests: {cpu: 50m, memory: 64Mi}
     limits: {memory: 256Mi}
