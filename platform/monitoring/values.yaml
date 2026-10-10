@@ -73,7 +73,29 @@ grafana:
     requests: {cpu: 50m, memory: 128Mi}
     limits: {memory: 256Mi}
   grafana.ini:
+    server:
+      domain: grafana.sudarshangowda.online
+      root_url: https://grafana.sudarshangowda.online/
+    security:
+      cookie_secure: true
+      disable_gravatar: true
     users:
       allow_sign_up: false
     auth.anonymous:
       enabled: false
+  ingress:
+    enabled: true
+    ingressClassName: alb
+    annotations:
+      alb.ingress.kubernetes.io/load-balancer-name: grafana-internal-alb
+      alb.ingress.kubernetes.io/scheme: internal
+      alb.ingress.kubernetes.io/target-type: ip
+      alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+      alb.ingress.kubernetes.io/security-groups: sg-011deb037672b8214
+      alb.ingress.kubernetes.io/manage-backend-security-group-rules: "true"
+      alb.ingress.kubernetes.io/healthcheck-path: /api/health
+      alb.ingress.kubernetes.io/tags: Project=bookstore,Environment=prod,Component=monitoring
+    hosts:
+      - grafana.sudarshangowda.online
+    path: /
+    pathType: Prefix
