@@ -139,3 +139,9 @@ additionalPrometheusRulesMap:
               severity: warning
             annotations:
               summary: "A bookstore deployment has fewer available replicas than desired"
+
+# 2-node lab cluster cannot tolerate a node failure by design (CPU requests > 50% of allocatable).
+# Production would add nodes instead of disabling. Revisit when node count grows.
+defaultRules:
+  disabled:
+    KubeCPUOvercommit: true
