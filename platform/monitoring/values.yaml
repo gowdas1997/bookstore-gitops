@@ -46,6 +46,7 @@ prometheus:
 
 alertmanager:
   alertmanagerSpec:
+    configSecret: alertmanager-email-config
     replicas: 1
     resources:
       requests: {cpu: 25m, memory: 64Mi}
