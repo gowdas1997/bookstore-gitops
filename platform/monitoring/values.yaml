@@ -145,3 +145,17 @@ additionalPrometheusRulesMap:
 defaultRules:
   disabled:
     KubeCPUOvercommit: true
+
+# Scrape bookstore app metrics (/metrics, port name http). job label = value of Service label "app".
+additionalServiceMonitors:
+  - name: bookstore
+    jobLabel: app
+    namespaceSelector:
+      matchNames: [bookstore]
+    selector:
+      matchLabels:
+        app.kubernetes.io/part-of: bookstore
+    endpoints:
+      - port: http
+        path: /metrics
+        interval: 30s
